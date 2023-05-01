@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: TicTacToe
+server:
+  port: 80
