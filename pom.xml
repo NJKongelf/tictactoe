@@ -91,5 +91,11 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/NJKongelf/tictactoe</url>
+        </repository>
+    </distributionManagement>
 </project>
