@@ -98,9 +98,10 @@ public class GameServiceImpl implements GameService {
     }
 
     private Optional<ResponseEntity<GameResponse>> didGameEnd(Game game, Player player) {
-        if (moveEndsInWin(game))
+        if (moveEndsInWin(game)) {
+            game.setWinningPlayer(player);
             return Optional.of(ResponseEntity.ok(new GameAnnouncement(player.getUsername() + " made a winning move")));
-        if (gameFinnished(game))
+        } else if (gameFinnished(game))
             return Optional.of(ResponseEntity.ok(new GameAnnouncement("GAME OVER! No more moves possible")));
         return Optional.empty();
     }
@@ -114,11 +115,11 @@ public class GameServiceImpl implements GameService {
     }
 
     private boolean gameFinnished(Game game) {
-        int moves = 0;
+        int moves = 1;
         for (Player p : game.getPlayerList()) {
             moves = moves + p.getMoves().size();
         }
-        return moves >= 8;
+        return moves >= 9;
     }
 
     private void nextPlayersTurn(Game game, GameMove move) {
